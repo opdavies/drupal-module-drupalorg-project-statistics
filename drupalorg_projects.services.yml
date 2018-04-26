@@ -1,0 +1,13 @@
+services:
+  cache.drupalorg_projects:
+    class: Drupal\Core\Cache\CacheBackendInterface
+    arguments:
+      - drupalorg_projects
+    factory: cache_factory:get
+    tags:
+      - name: cache.bin
+
+  drupalorg_projects.project_retriever:
+    class: Drupal\drupalorg_projects\Service\ProjectRetriever
+    arguments:
+      - '@cache.drupalorg_projects'

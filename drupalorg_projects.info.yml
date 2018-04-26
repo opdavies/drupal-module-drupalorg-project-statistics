@@ -1,0 +1,4 @@
+name: My Drupal.org Projects
+description: Displays project information from Drupal.org.
+type: module
+core: 8.x

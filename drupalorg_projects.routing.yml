@@ -1,0 +1,13 @@
+drupalorg_projects.settings:
+  path: '/admin/config/services/drupalorg-projects'
+  requirements:
+    _permission: 'administer site configuration'
+  defaults:
+    _form: 'Drupal\drupalorg_projects\Form\ProjectSettingsForm'
+
+ms.projects.index:
+  path: '/projects'
+  requirements:
+    _permission: 'access content'
+  defaults:
+    _controller: 'Drupal\drupalorg_projects\Controller\ProjectController::index'
