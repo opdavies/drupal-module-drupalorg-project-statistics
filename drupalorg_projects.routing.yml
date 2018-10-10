@@ -5,7 +5,7 @@ drupalorg_projects.settings:
   defaults:
     _form: 'Drupal\drupalorg_projects\Form\ProjectSettingsForm'
 
-ms.projects.index:
+drupalorg_projects.projects.index:
   path: '/projects'
   requirements:
     _permission: 'access content'
