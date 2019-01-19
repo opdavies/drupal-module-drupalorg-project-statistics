@@ -4,9 +4,12 @@ namespace Drupal\drupalorg_projects\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\drupalorg_projects\Service\ProjectRetriever;
+use Drupal\drupalorg_projects\Traits\SplitsStrings;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ProjectController extends ControllerBase {
+
+  use SplitsStrings;
 
   /**
    * The project retriever service.
@@ -43,7 +46,7 @@ class ProjectController extends ControllerBase {
   public function index(): array {
     $project_ids = $this->config('drupalorg_projects.settings')->get('project_ids');
 
-    $projects = collect(preg_split('/\s*[\n|,]\s*/', $project_ids))
+    $projects = collect($this->splitString($project_ids))
       ->map(function (int $project_id) {
         return $this->projectRetriever
           ->setProjectId($project_id)
