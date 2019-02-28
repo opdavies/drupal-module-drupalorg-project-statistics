@@ -48,6 +48,7 @@ class ProjectController extends ControllerBase {
       '#title' => $this->t('Projects'),
       '#theme' => 'item_list',
       '#items' => $this->projectIds(),
+      '#empty' => $this->t('There are currently no projects.'),
     ];
   }
 
