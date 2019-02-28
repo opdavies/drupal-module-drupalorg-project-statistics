@@ -45,7 +45,7 @@ class ProjectController extends ControllerBase {
    */
   public function index(): array {
     return [
-      '#title' => $this->t('Projects'),
+      '#title' => $this->t('My Drupal.org Projects'),
       '#theme' => 'item_list',
       '#items' => $this->projectIds(),
       '#empty' => $this->t('There are currently no projects.'),
