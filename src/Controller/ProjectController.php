@@ -44,9 +44,25 @@ class ProjectController extends ControllerBase {
    *   A render array.
    */
   public function index(): array {
-    $project_ids = $this->config('drupalorg_projects.settings')->get('project_ids');
+    return [
+      '#title' => $this->t('Projects'),
+      '#theme' => 'item_list',
+      '#items' => $this->projectIds(),
+    ];
+  }
 
-    $projects = collect($this->splitString($project_ids))
+  /**
+   * Return the project IDs.
+   *
+   * @return array
+   */
+  private function projectIds(): array {
+    $project_ids = $this->config('drupalorg_projects.settings')->get('project_ids');
+    if (is_null($project_ids)) {
+      return [];
+    }
+
+    return collect($this->splitString($project_ids))
       ->map(function (int $project_id) {
         return $this->projectRetriever
           ->setProjectId($project_id)
@@ -62,13 +78,6 @@ class ProjectController extends ControllerBase {
         ]);
       })
       ->values()
-      ->all();
-
-    return [
-      '#title' => $this->t('Projects'),
-      '#theme' => 'item_list',
-      '#items' => $projects,
-    ];
+      ->toArray();
   }
-
 }
